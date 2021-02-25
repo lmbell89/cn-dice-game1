@@ -9,6 +9,7 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     color: var(--dark);
+    border-radius: 10px;
 }
 
 body {
@@ -17,159 +18,57 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='126' height='84' viewBox='0 0 126 84'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M126 83v1H0v-2h40V42H0v-2h40V0h2v40h40V0h2v40h40V0h2v83zm-2-1V42H84v40h40zM82 42H42v40h40V42zm-50-6a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm96 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm-42 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm30-12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM20 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm12 24a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 78a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm12 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm54 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM50 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM50 78a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm54-12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm12 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM92 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM92 78a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24-42a4 4 0 1 1 0-8 4 4 0 0 1 0 8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin: 20px 0;
-}
-
 button:hover {
     cursor: pointer;
 }
 
-#playerContainer {
+.container {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    min-height: 100vh;
-}
-
-#controls {
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    transform: translateX(-50%);
-    width: 20vw;
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    transition: bottom 1s ease;
+    border: 5px solid var(--dark);
+    margin: 25px auto;
+    max-width: 700px;
+    min-width: 350px;
+    width: 60vw;
+    padding: 10px;
+    height: 90vh;
+    max-height: 1000px;
+    background-color: var(--light);
 }
 
-#controls * {
-    width: 10vw;
-    min-width: 60px;
-    max-width: 150px;
-    padding: 0;
-}
-
-#controls button {
-    margin: 5px 0;    
-}
-
-#controls button:not(#roll) {
-    font-weight: bold;
-    font-size: 1rem;
-    background: var(--light);    
-    border: 2px solid var(--dark);
-    padding: 1rem 0;
-}
-
-#controls.gameOver #roll, #controls.gameOver #hold {
-    display: none;
-}
-
-.bottom {
-    bottom: 0 !important;
-}
-
-#restart {
-    display: none;
-}
-
-#controls.gameOver #restart {
-    display: inline-block;
-}
-
-#roll {
-    border: none;
-    background-color: transparent;
-}
-
-.player {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    border: 10px solid transparent;
-}
-
-.scores {
-    display: flex;   
-    justify-content: space-around;
-    align-items: stretch;
-}
-
-.scores > div {
-    min-height: 5rem;
-    width: 25%;
-    padding: 2vw 2vh;
-    font-size: 3rem;
+h1, h2 {
     text-align: center;
-    vertical-align: middle;
+    margin: 0;
 }
 
-.held {
-    background: var(--dark);
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 4.5rem;
+}
+
+img {
+    width: 20vw;
+    min-width: 150px;
+    max-width: 250px;
+    border: 3px solid var(--dark);
+    
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    font-size: 1.25rem;
+    font-weight: bold;
     color: var(--light);
+    border: none;
+    background-color: var(--dark);
 }
 
-.held::before {
-    content: "Held:";
-    display: block;
-    font-size: 1rem;
-}
-
-.current {
-    background: var(--light);
-    border: 2px solid var(--dark);
-}
-
-.current::before {
-    content: "Current:";
-    display: block;
-    font-size: 1rem;
-}
-
-.active {
-    border: 10px solid var(--orange);
-}
-
-.winner {
-    border-color: var(--green);
-}
-
-.winner .held {
-    background-color: var(--green);
-}
-
-@media only screen and (min-width: 768px) {
-    h2 {
-        font-size: 4rem;
-        margin: 35px 0;
-    }
-
-    #playerContainer {
-        flex-direction: row;
-    }
-
-    #controls, #controls > div, .scores {
-        flex-direction: column;
-    }
-
-    #controls {
-        top: 50%;
-        bottom: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .scores {
-        justify-content: center;
-        align-items: center;
-        flex-grow: 1;
-    }
-
-    .scores > div {
-        width: 40%;
-    }
+.hidden {
+    display: none;
 }
