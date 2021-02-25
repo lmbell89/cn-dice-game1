@@ -1,19 +1,42 @@
 (() => {
     class Game {
         constructor() {
-            this.score = 0
-            this.gameOver = false
+            this._score = 0
+            this._gameOver = false
             this.rolling = false
-            this.die = new Die()            
+            this.die = new Die()
+            this.rollbtn = document.getElementById("roll")
+            this.restartBtn = document.getElementById("restart")
         }
 
-        endGame(won) {
-            this.gameOver = true
+        get score() {
+            return this._score
+        }
 
-            if (won) {
+        set score(value) {
+            const h2 = document.querySelector("h2")
 
+            this._score = value            
+            h2.innerHTML = this._score
+            this.gameOver = this.score >= 20
+        }
+
+        get gameOver() {
+            return this._gameOver
+        }
+
+        set gameOver(isOver) {
+            const h1 = document.querySelector("h1")
+            this._gameOver = isOver
+
+            if (isOver) {
+                this.rollbtn.classList.add("hidden")
+                this.restartBtn.classList.remove("hidden")
+                h1.innerHTML = this.score >= 20 ? "Winner!" : "Loser :("
             } else {
-
+                this.rollbtn.classList.remove("hidden")
+                this.restartBtn.classList.add("hidden")
+                h1.innerHTML = "Player 1"
             }
         }
 
@@ -38,7 +61,7 @@
                 this.rolling = false
     
                 if (number === 1) {
-                    this.victory = false
+                    this.gameOver = true
                 } else {
                     this.score += number
                 }
